@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s2rag"
+version = "0.1.0"
+description = "Budget-aware relational evidence execution over imperfect text-derived facts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = [
+  "einops",
+  "filelock>=3.13.0",
+  "httpx>=0.27.0",
+  "networkx>=3.4",
+  "numpy",
+  "pydantic>=2.10",
+  "python-igraph>=0.11",
+  "scipy",
+  "sentence-transformers",
+  "tenacity>=8.5",
+  "tiktoken>=0.7",
+  "torch>=2.5",
+  "tqdm",
+  "transformers>=4.45",
+]
+
+[project.scripts]
+s2rag = "s2rag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+s2rag = ["prompts/dspy_prompts/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
